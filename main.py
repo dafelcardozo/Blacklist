@@ -19,16 +19,16 @@ def get_db():
 
 
 @app.post("/blacklist/", response_model=schemas.Blacklisted)
-def post_blacklisted(user: schemas.UserCreate, db: Session = Depends(get_db)):
+def post_blacklisted(user: schemas.Blacklisted, db: Session = Depends(get_db)):
     return crud.post_blacklisted(db=db, user=user)
 
 
-@app.get("/blacklist/", response_model=list[schemas.User])
-def list_blacklisted(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return crud.all_blacklisted(db, skip=skip, limit=limit)
+@app.get("/blacklist/", response_model=list[schemas.Blacklisted])
+def list_blacklisted(db: Session = Depends(get_db)):
+    return crud.all_blacklisted(db)
 
 
-@app.get("/blacklist/check/{email}", response_model=schemas.User)
+@app.get("/blacklist/check/{email}", response_model=schemas.Blacklisted)
 def check_blacklisted(user_id: int, db: Session = Depends(get_db)):
     return crud.is_blacklisted(db, email=email)
 
