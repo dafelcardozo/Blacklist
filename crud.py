@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 
-from . import models, schemas
+import models, schemas
 
 
-def is_blacklisted(db: Session, email: string):
+def is_blacklisted(db: Session, email: str):
     return db.query(models.Blacklisted).filter(models.Blacklisted.email == email).all()
 
 
