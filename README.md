@@ -31,9 +31,11 @@ it now isn't, and only accepts connections through the VPC.
 
 ![image](https://user-images.githubusercontent.com/13710571/216703102-1d29a5d3-ced3-4814-a9d9-95fbc8e4a69a.png)
 
-- Swagger documentation and API unit tests:
+- Documentation and API unit tests:
 
-A Swagger documentation is provided as an easy to use way to test the API endpoints.
+OpenAPI and Swagger documentation are provided as an easy way to test the API endpoints.
+
+![image](https://user-images.githubusercontent.com/13710571/216731168-c6b371a3-70fd-4d05-8abf-0413afbb4e70.png)
 
 
 
