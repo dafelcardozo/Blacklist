@@ -41,7 +41,7 @@ Descripción de red
 
 Se configuraron reglas de VPC para la comunicación segmentada y segura entre la Función Lambda y la base de datos en RDS.
 
-![image](https://user-images.githubusercontent.com/13710571/216705656-f2e6ccfe-2de4-4833-8b17-cb6fadb5e30a.png)
+![image](https://user-images.githubusercontent.com/13710571/216713041-ff705aba-c549-417a-8fb1-e4a6613abcba.png)
 
 El micro servicio está sin embargo expuesto al público a tavés de un API Gateway
 
