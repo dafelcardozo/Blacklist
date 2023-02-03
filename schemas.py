@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
 class Blacklisted(BaseModel):
-    id: int | None = None
+    id: int
     email: str
-    reason: str | None = None
+    reason: str
     game_id: int
 
     class Config:

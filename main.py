@@ -1,13 +1,23 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-
-import crud, models, schemas
+from mangum import Mangum
+from starlette.exceptions import HTTPException
+from fastapi.exceptions import RequestValidationError
+from exception_handlers import request_validation_exception_handler, http_exception_handler, unhandled_exception_handler
+from middleware import log_request_middleware
 from database import SessionLocal, engine
+import crud, models, schemas
+from logger import logger
+
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(debug=True)
 
+app.middleware("http")(log_request_middleware)
+app.add_exception_handler(RequestValidationError, request_validation_exception_handler)
+app.add_exception_handler(HTTPException, http_exception_handler)
+app.add_exception_handler(Exception, unhandled_exception_handler)
 
 # Dependency
 def get_db():
@@ -32,3 +42,11 @@ def list_blacklisted(db: Session = Depends(get_db)):
 def check_blacklisted(email: str, db: Session = Depends(get_db)):
     return crud.is_blacklisted(db, email=email)
 
+
+@app.get("/hello", response_model=dict)
+def say_hello():
+    logger.info("Felipe says hello")
+    return {"this is":"hello, world!"} 
+
+logger.info("Felipe registered handler")
+handler = Mangum(app)
