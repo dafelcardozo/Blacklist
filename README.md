@@ -37,7 +37,8 @@ OpenAPI and Swagger documentation are provided as an easy way to test the API en
 
 ![image](https://user-images.githubusercontent.com/13710571/216731168-c6b371a3-70fd-4d05-8abf-0413afbb4e70.png)
 
-
+- Swagger docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/redoc/)
+- Open API docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/redoc/)
 
 ## Network configuration
 
@@ -47,5 +48,4 @@ VPC rules were configured for a safe and segmented communication between the Lam
 
 ![image](https://user-images.githubusercontent.com/13710571/216713041-ff705aba-c549-417a-8fb1-e4a6613abcba.png)
 
-El micro servicio está sin embargo expuesto al público a tavés de un API Gateway
-
+However, the micro-service itself is exposed through AWS API Gateway. 
