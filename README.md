@@ -38,7 +38,7 @@ OpenAPI and Swagger documentation are provided as an easy way to test the API en
 ![image](https://user-images.githubusercontent.com/13710571/216731168-c6b371a3-70fd-4d05-8abf-0413afbb4e70.png)
 
 - Swagger docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/redoc/)
-- Open API docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/redoc/)
+- Open API docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/docs/)
 
 ## Network configuration
 
