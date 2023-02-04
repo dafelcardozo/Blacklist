@@ -30,23 +30,31 @@ it now isn't, and only accepts connections through the VPC.
 - this micro-API is a FastAPI over Python 3.9 application, and was published on the web as an AWS Lambda Function.
 - on AWS, it uses a Secrets Manager to keep the RDS connection string secure on the cloud.
 
-![image](https://user-images.githubusercontent.com/13710571/216703102-1d29a5d3-ced3-4814-a9d9-95fbc8e4a69a.png)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/13710571/216703102-1d29a5d3-ced3-4814-a9d9-95fbc8e4a69a.png" width="700">
+</p>
 
 - Documentation and API unit tests:
 
 OpenAPI and Swagger documentation are provided as an easy way to test the API endpoints.
 
-![image](https://user-images.githubusercontent.com/13710571/216731168-c6b371a3-70fd-4d05-8abf-0413afbb4e70.png)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/13710571/216731168-c6b371a3-70fd-4d05-8abf-0413afbb4e70.png">
+</p>
 
 - Swagger docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/redoc/)
 - Open API docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/redoc/)
 
 ## Network configuration
 
-![image](https://user-images.githubusercontent.com/13710571/216705239-fc0f79ac-be82-47e7-a65f-c557f93b40bd.png)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/13710571/216705239-fc0f79ac-be82-47e7-a65f-c557f93b40bd.png">
+</p>
 
 VPC rules were configured for a safe and segmented communication between the Lambda Function and its database on RDS.
 
-![image](https://user-images.githubusercontent.com/13710571/216713041-ff705aba-c549-417a-8fb1-e4a6613abcba.png)
+<p align="center">
+<img src="https://user-images.githubusercontent.com/13710571/216713041-ff705aba-c549-417a-8fb1-e4a6613abcba.png">
+</p>
 
 However, the micro-service itself is exposed through AWS API Gateway. 
