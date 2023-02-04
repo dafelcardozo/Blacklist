@@ -31,11 +31,14 @@ it now isn't, and only accepts connections through the VPC.
 
 ![image](https://user-images.githubusercontent.com/13710571/216703102-1d29a5d3-ced3-4814-a9d9-95fbc8e4a69a.png)
 
-- Swagger documentation and API unit tests:
+- Documentation and API unit tests:
 
-A Swagger documentation is provided as an easy to use way to test the API endpoints.
+OpenAPI and Swagger documentation are provided as an easy way to test the API endpoints.
 
+![image](https://user-images.githubusercontent.com/13710571/216731168-c6b371a3-70fd-4d05-8abf-0413afbb4e70.png)
 
+- Swagger docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/redoc/)
+- Open API docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/redoc/)
 
 ## Network configuration
 
@@ -45,5 +48,4 @@ VPC rules were configured for a safe and segmented communication between the Lam
 
 ![image](https://user-images.githubusercontent.com/13710571/216713041-ff705aba-c549-417a-8fb1-e4a6613abcba.png)
 
-The micro-service is exposed through an AWS API Gateway  
-
+However, the micro-service itself is exposed through AWS API Gateway. 
