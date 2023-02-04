@@ -6,7 +6,7 @@ This project contains the source code and instructions for my solution to the Tr
 Trebu-blacklist is a Python and Fast API application that implements a micro-service API with just two endpoints:
 
 ```curl
-curl -X POST -H "Content-Type: application/json" -d '{"email": "someemail@somesite.com", "reason": "Fue grosero", "game_id": 435345}'  http://127.0.0.1:8000/blacklist/
+curl -X POST -H "Content-Type: application/json" -d '{"email": "someemail@somesite.com", "reason": "Rude", "game_id": 435345}'  http://127.0.0.1:8000/blacklist/
 ```
 ```curl
 curl /blacklist/check/someemail@somesite.com
@@ -21,7 +21,7 @@ I'll describe here several details about the technical implementation:
 - it uses a PostgresSQL database on RDS (Relational Database Service). While the database was exposed to the public provided a login and password during development, 
 it now isn't, and only accepts connections through the VPC.
 
-![image](https://user-images.githubusercontent.com/13710571/216707594-8d48c5fa-7e5c-42d4-8db6-0adc8e549afb.png)
+![image](https://user-images.githubusercontent.com/13710571/216707594-8d48c5fa-7e5c-42d4-8db6-0adc8e549afb.png=200)
 
 
 ## AWS deployment architecture
@@ -45,5 +45,5 @@ VPC rules were configured for a safe and segmented communication between the Lam
 
 ![image](https://user-images.githubusercontent.com/13710571/216713041-ff705aba-c549-417a-8fb1-e4a6613abcba.png)
 
-El micro servicio está sin embargo expuesto al público a tavés de un API Gateway
+The micro-service is exposed through an AWS API Gateway  
 
