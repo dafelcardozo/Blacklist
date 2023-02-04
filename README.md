@@ -39,7 +39,7 @@ it now isn't, and only accepts connections through the VPC.
 OpenAPI and Swagger documentation are provided as an easy way to test the API endpoints.
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/13710571/216731168-c6b371a3-70fd-4d05-8abf-0413afbb4e70.png">
+<img src="https://user-images.githubusercontent.com/13710571/216731168-c6b371a3-70fd-4d05-8abf-0413afbb4e70.png"  width="700">
 </p>
 
 - Swagger docs: (https://q1xl8mgi54.execute-api.us-east-1.amazonaws.com/redoc/)
@@ -48,13 +48,13 @@ OpenAPI and Swagger documentation are provided as an easy way to test the API en
 ## Network configuration
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/13710571/216705239-fc0f79ac-be82-47e7-a65f-c557f93b40bd.png">
+<img src="https://user-images.githubusercontent.com/13710571/216705239-fc0f79ac-be82-47e7-a65f-c557f93b40bd.png"  width="500">
 </p>
 
 VPC rules were configured for a safe and segmented communication between the Lambda Function and its database on RDS.
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/13710571/216713041-ff705aba-c549-417a-8fb1-e4a6613abcba.png">
+<img src="https://user-images.githubusercontent.com/13710571/216713041-ff705aba-c549-417a-8fb1-e4a6613abcba.png"  width="500">
 </p>
 
 However, the micro-service itself is exposed through AWS API Gateway. 
