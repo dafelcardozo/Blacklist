@@ -21,8 +21,9 @@ I'll describe here several details about the technical implementation:
 - it uses a PostgresSQL database on RDS (Relational Database Service). While the database was exposed to the public provided a login and password during development, 
 it now isn't, and only accepts connections through the VPC.
 
-![image](https://user-images.githubusercontent.com/13710571/216707594-8d48c5fa-7e5c-42d4-8db6-0adc8e549afb.png=200)
-
+<p align="center">
+<img src="https://user-images.githubusercontent.com/13710571/216707594-8d48c5fa-7e5c-42d4-8db6-0adc8e549afb.png" width="700" >
+</p>
 
 ## AWS deployment architecture
 
