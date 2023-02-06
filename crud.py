@@ -57,7 +57,8 @@ def all_blacklisted(db: Session):
     return db.query(Blacklisted).filter().all()
 
 def post_blacklisted(db: Session, posted: schemas.Blacklisted):
-    blacklisted = Blacklisted(email=posted.email, reason=posted.reason, game_id=posted.game_id)
+    print("Post crud...")
+    blacklisted = Blacklisted(email=posted.email, reason=posted.reason, game_id=posted.game_id, date=posted.date )
     db.add(blacklisted)
     db.commit()
     db.refresh(blacklisted)
