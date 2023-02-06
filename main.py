@@ -46,6 +46,7 @@ def get_db():
 
 @app.post("/blacklist/", response_model=schemas.Blacklisted)
 def post_blacklisted(user: schemas.Blacklisted, db: Session = Depends(get_db)):
+    print("posted a player")
     return crud.post_blacklisted(db, user)
 
 @app.get("/blacklist/check/{email}", response_model=list[schemas.Blacklisted])
