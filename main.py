@@ -35,7 +35,6 @@ app.middleware('http')(catch_exceptions_middleware)
 app.add_exception_handler(RequestValidationError, request_validation_exception_handler)
 app.add_exception_handler(HTTPException, http_exception_handler)
 app.add_exception_handler(Exception, unhandled_exception_handler)
-app.add_exception_handler(ClientError, unhandled_exception_handler)
 
 def get_db():
     db = SessionLocal()
@@ -53,8 +52,8 @@ def post_blacklisted(user: schemas.Blacklisted, db: Session = Depends(get_db)):
 def check_blacklisted(email: str, db: Session = Depends(get_db)):
     return crud.is_blacklisted(db, email=email)
 
-@app.get("/__debug/check/{email}", response_model=list[schemas.Blacklisted])
-def burla_blacklisted(email: str, db: Session = Depends(get_db)):
+@app.get("/__debug/check/", response_model=list[schemas.Blacklisted])
+def burla_blacklisted(db: Session = Depends(get_db)):
     return crud.all_blacklisted(db)
 
 def get_secret():
