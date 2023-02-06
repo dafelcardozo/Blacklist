@@ -1,18 +1,22 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from mangum import Mangum
-from starlette.exceptions import HTTPException
 from fastapi.exceptions import RequestValidationError
+from logger import logger
 from exception_handlers import request_validation_exception_handler, http_exception_handler, unhandled_exception_handler
-from middleware import log_request_middleware
+from middleware import log_request_middleware, catch_exceptions_middleware
 from database import SessionLocal, engine
 import crud, models, schemas
-from logger import logger
+import botocore
+import boto3
+import json
+import os
+import psycopg2
+from botocore.exceptions import ClientError
 
 
 models.Base.metadata.create_all(bind=engine)
-
-app = FastAPI(debug=True, title="Trebu Blacklist",
+app = FastAPI(title="Trebu Blacklist",
     description="A demo project of my abilities with AWS, Rest and Python. It contains just to endpoints",
     version="1.0",
     terms_of_service="http://example.com/terms/",
@@ -27,9 +31,11 @@ app = FastAPI(debug=True, title="Trebu Blacklist",
     })
 
 app.middleware("http")(log_request_middleware)
+app.middleware('http')(catch_exceptions_middleware)
 app.add_exception_handler(RequestValidationError, request_validation_exception_handler)
 app.add_exception_handler(HTTPException, http_exception_handler)
 app.add_exception_handler(Exception, unhandled_exception_handler)
+app.add_exception_handler(ClientError, unhandled_exception_handler)
 
 def get_db():
     db = SessionLocal()
@@ -38,26 +44,29 @@ def get_db():
     finally:
         db.close()
 
-""" 
 @app.post("/blacklist/", response_model=schemas.Blacklisted)
 def post_blacklisted(user: schemas.Blacklisted, db: Session = Depends(get_db)):
     return crud.post_blacklisted(db, user)
- """
 
-@app.get("/blacklist/", response_model=list[schemas.Blacklisted])
-def list_blacklisted(db: Session = Depends(get_db)):
-    return crud.all_blacklisted(db)
-
-
-@app.get("/blacklist/check/{email}", response_model=object)
+@app.get("/blacklist/check/{email}", response_model=list[schemas.Blacklisted])
 def check_blacklisted(email: str, db: Session = Depends(get_db)):
     return crud.is_blacklisted(db, email=email)
 
+@app.get("/__debug/check/{email}", response_model=list[schemas.Blacklisted])
+def burla_blacklisted(email: str, db: Session = Depends(get_db)):
+    return crud.all_blacklisted(db)
 
-""" @app.get("/hello", response_model=dict)
-def say_hello():
-    logger.info("Felipe says hello")
-    return {"this is":"hello, world!"}  """
+def get_secret():
+    secret_name = "arn:aws:secretsmanager:us-east-1:365248273988:secret:excluyeSecreto-J4886P"
+    region_name = "us-east-1"
+    session = boto3.session.Session()
+    client = session.client(service_name='secretsmanager', region_name=region_name)
+    get_secret_value_response = client.get_secret_value(SecretId=secret_name)
+    return get_secret_value_response['SecretString']
 
-logger.info("Felipe registered handler")
+
+def database_connection_url():
+    secret = json.loads(get_secret())
+    return f"postgresql+psycopg2://{secret['username']}:{secret['password']}@{secret['host']}:{secret['port']}/{secret['dbname']}"
+
 handler = Mangum(app)

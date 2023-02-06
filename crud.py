@@ -8,7 +8,7 @@ def is_blacklisted(db: Session, email: str):
 
 
 def all_blacklisted(db: Session):
-    return db.query(models.Blacklisted).all()
+    return db.query(models.Blacklisted).filter().all()
 
 def post_blacklisted(db: Session, posted: schemas.Blacklisted):
     blacklisted = models.Blacklisted(email=posted.email, reason=posted.reason, game_id=posted.game_id)
