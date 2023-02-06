@@ -43,17 +43,16 @@ def get_db():
     finally:
         db.close()
 
-@app.post("/blacklist/", response_model=schemas.Blacklisted)
+@app.post("/blacklist", response_model=schemas.Blacklisted)
 def post_blacklisted(user: schemas.Blacklisted, db: Session = Depends(get_db)):
-    print("posted a player")
     return crud.post_blacklisted(db, user)
 
 @app.get("/blacklist/check/{email}", response_model=list[schemas.Blacklisted])
 def check_blacklisted(email: str, db: Session = Depends(get_db)):
     return crud.is_blacklisted(db, email=email)
 
-@app.get("/__debug/check/", response_model=list[schemas.Blacklisted])
-def burla_blacklisted(db: Session = Depends(get_db)):
+@app.get("/__debug")
+def debug_blacklisted(db: Session = Depends(get_db)):
     return crud.all_blacklisted(db)
 
 def get_secret():
